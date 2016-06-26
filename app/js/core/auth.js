@@ -10,12 +10,12 @@ define(["lodash", "jquery", "backbone", "browser/api", "i18n/i18n", "modals/aler
 	var API_HOST = "https://api.ichro.me";
 
 	var Auth = Backbone.Model.extend({
-		isPro: false,
+		isPro: true,
 		isSignedIn: false,
 
 		initialize: function() {
 			this.on("change:isPro", function() {
-				this.isPro = this.get("isPro");
+				this.isPro = true //this.get("isPro");
 			}, this).on("change:user", function() {
 				this.isSignedIn = !!this.get("user");
 			}, this);
@@ -36,7 +36,7 @@ define(["lodash", "jquery", "backbone", "browser/api", "i18n/i18n", "modals/aler
 					return location.reload();
 				}
 
-				var wasPro = this.isPro;
+				var wasPro = true // this.isPro;
 
 				this.clear({
 					silent: true
@@ -174,14 +174,14 @@ define(["lodash", "jquery", "backbone", "browser/api", "i18n/i18n", "modals/aler
 			}
 
 
-			this.isPro = payload.plan && payload.plan !== "free";
+			this.isPro = true //payload.plan && payload.plan !== "free";
 
 			this.set({
-				isPro: this.isPro,
+				isPro: true, //this.isPro,
 				user: payload.sub,
 				expiry: payload.exp * 1000,
-				plan: payload.plan || "free",
-				subscription: payload.subscription
+				plan: "pro", // payload.plan || "free",
+				subscription: "yearly" // payload.subscription
 			});
 
 			return this;
