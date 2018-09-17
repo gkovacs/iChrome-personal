@@ -54,8 +54,8 @@
 	},
 	"browser_action": {},
 	"options_page": "index.html#settings",
-	"chrome_settings_overrides": {
-		"homepage": "http://ichro.me/redirect"
+	"chrome_url_overrides": {
+		"newtab": "index.html"
 	},
 	"permissions": [
 		"storage",

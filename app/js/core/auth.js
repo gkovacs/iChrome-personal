@@ -10,15 +10,15 @@ define(["lodash", "jquery", "backbone", "browser/api", "fbanalytics", "i18n/i18n
 	var API_HOST = "https://api.ichro.me";
 
 	var Auth = Backbone.Model.extend({
-		isPro: false,
-		adFree: false,
+		isPro: true,
+		adFree: true,
 		isSignedIn: false,
 
 		initialize: function() {
 			this.on("change:isPro", function() {
-				this.isPro = this.get("isPro");
+				this.isPro = true;
 			}, this).on("change:adFree", function() {
-				this.adFree = this.get("adFree");
+				this.adFree = true;
 			}, this).on("change:user", function() {
 				this.isSignedIn = !!this.get("user");
 			}, this);
@@ -39,7 +39,7 @@ define(["lodash", "jquery", "backbone", "browser/api", "fbanalytics", "i18n/i18n
 					return location.reload();
 				}
 
-				var wasPro = this.isPro;
+				var wasPro = true;
 
 				this.clear({
 					silent: true
@@ -179,17 +179,17 @@ define(["lodash", "jquery", "backbone", "browser/api", "fbanalytics", "i18n/i18n
 			}
 
 
-			this.isPro = payload.plan && payload.plan !== "free";
+			this.isPro = true;
 
-			this.adFree = this.isPro || !!payload.adFree;
+			this.adFree = true;
 
 			this.set({
-				isPro: this.isPro,
+				isPro: true,
 				user: payload.sub,
-				adFree: this.adFree,
+				adFree: true,
 				expiry: payload.exp * 1000,
-				plan: payload.plan || "free",
-				subscription: payload.subscription
+				plan: "pro",
+				subscription: "yearly"
 			});
 
 			return this;
