@@ -1,0 +1,119 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<title>新标签</title>
+
+		<base target="_self" />
+		<meta charset="utf-8" />
+		<meta name="google" value="notranslate" />
+	</head>
+
+	<body class="unloaded">
+		<!--
+			This element is used to capture text typed before the page is finished loading so
+			it can be used in searches that are run.
+		-->
+		<input type="search" id="preload-search-input" data-submit="false" autofocus="autofocus" tabindex="-1" style="position:fixed;top:-100vh;left:-100vw" />
+
+		<script id="preload-search-script">
+			document.getElementById("preload-search-input").onkeydown = function(e) {
+				if (e.keyCode === 13) {
+					this.setAttribute("data-submit", "true");
+				}
+			};
+		</script>
+
+		<div class="loading">
+			<!-- This is nested inside the element so it gets cleaned up after load along with the element -->
+			<style>
+				body > .loading {
+					top: 0;
+					left: 0;
+					right: 0;
+					bottom: 0;
+					z-index: 999;
+					position: fixed;
+					background: top left/1px no-repeat #F0F0F0;
+					background-image: inherit;
+				}
+
+				body > .loading img {
+					top: 0;
+					left: 0;
+					right: 0;
+					bottom: 0;
+					margin: auto;
+					width: 128px;
+					height: 128px;
+					position: absolute;
+					animation: colorfade .4s cubic-bezier(.4, 0, .2, 1) forwards;
+				}
+
+				@keyframes colorfade {
+					from {
+						opacity: .3;
+						-webkit-filter: grayscale(1);
+					}
+					to {
+						opacity: 1;
+						-webkit-filter: grayscale(0);
+					}
+				}
+			</style>
+
+		</div>
+
+		<link href="css/style.css?nocache=1537178276145" rel="stylesheet" />
+
+		<!--
+			The hash listed in the manifest's CSP must be updated any time this script is changed
+		-->
+		<script>
+			(function() {
+				// Preload all fonts using the Font Loading API so they're available for the first paint
+				document.fonts.load("300 16px Open Sans, Roboto");
+				document.fonts.load("400 16px Open Sans, Roboto, Entypo, Material Icons");
+				document.fonts.load("500 16px Roboto");
+				document.fonts.load("600 16px Open Sans");
+				document.fonts.load("700 16px Open Sans, Roboto");
+
+				// Preload the default background image, again so it's available at the first paint
+				if (localStorage.themeImg) {
+					var img = new Image();
+
+					img.src = localStorage.themeImg;
+				}
+			})();
+		</script>
+
+		<div class="voicebar">
+			<div class="text">Listening...</div>
+
+			<div class="button">
+				<button>
+					<svg width="31" height="38" xmlns="http://www.w3.org/2000/svg">
+						<path d="M15.673,0c-3.412,0-6.188,2.776-6.188,6.188v12.875c0,3.412,2.776,6.188,6.188,6.188s6.188-2.774,6.188-6.188V6.188C21.859,2.776,19.085,0,15.673,0L15.673,0z" />
+						<path d="M15.485,32.86C7.223,32.86,0.5,26.138,0.5,17.875v-0.36h3.721v0.36c0,6.212,5.053,11.265,11.265,11.265S26.75,24.087,26.75,17.875v-0.36h3.721v0.36C30.471,26.138,23.748,32.86,15.485,32.86z" />
+						<rect x="13.423" y="31.875" width="4.125" height="6.875" />
+					</svg>
+				</button>
+			</div>
+
+			<div class="close">&#xE678;</div>
+		</div>
+
+		<div class="speech-overlay"></div>
+
+		<div class="widgets-container"></div>
+
+		<div class="tab-container" tabindex="-1"></div>
+
+		<div class="bg-info">
+			<span class="icon m-icon">info_outline</span>
+		</div>
+
+		
+
+		<script type="text/javascript" src="js/app.js?nocache=1537178276145"></script>
+	</body>
+</html>
